@@ -3,382 +3,878 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Varsha Dudhat | Insurance Advisor</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Varsha Dudhat · Insurance Advisor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1B2B4B;
-    --navy-light: #2C3F66;
-    --blue-accent: #2563EB;
-    --gold: #B8862A;
-    --gold-light: #F5EDD6;
-    --bg: #FAFAFA;
-    --bg2: #F3F4F6;
-    --border: #E5E7EB;
-    --text: #111827;
-    --text-muted: #6B7280;
-    --white: #FFFFFF;
-  }
+:root {
+  --cream: #F8F4EE;
+  --cream-deep: #EDE7DA;
+  --parchment: #F2EBE0;
+  --gold: #A8834A;
+  --gold-light: #C9A96E;
+  --gold-pale: #F5EDD8;
+  --ink: #1C1610;
+  --ink-mid: #3D3328;
+  --ink-soft: #6B5E4E;
+  --rust: #8C3A1A;
+  --white: #FDFAF6;
+  --border: rgba(168,131,74,0.2);
+  --border-strong: rgba(168,131,74,0.4);
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.6;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    inset: 0 0 auto 0;
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
-    z-index: 200;
-    padding: 0 60px;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: box-shadow 0.3s;
-  }
-  nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
-  .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .nav-brand-icon {
-    width: 38px; height: 38px;
-    background: var(--navy);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .nav-brand-name { font-weight: 600; font-size: 15px; color: var(--navy); line-height: 1.2; }
-  .nav-brand-role { font-size: 11px; color: var(--text-muted); }
-  .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
-  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--navy); }
-  .nav-cta { padding: 9px 22px; background: var(--navy) !important; color: white !important; border-radius: 6px; font-size: 13px !important; font-weight: 600 !important; transition: background 0.2s !important; }
-  .nav-cta:hover { background: var(--navy-light) !important; color: white !important; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-  .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
-  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-  .mobile-menu {
-    display: none; position: fixed;
-    top: 68px; left: 0; right: 0;
-    background: white; border-bottom: 1px solid var(--border);
-    padding: 16px 24px; flex-direction: column; gap: 4px;
-    z-index: 199; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a { text-decoration: none; padding: 12px 8px; color: var(--text); font-size: 15px; font-weight: 500; border-bottom: 1px solid var(--bg2); transition: color 0.2s; }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--navy); }
+/* GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 9999;
+}
 
-  /* HERO */
-  #hero { padding-top: 68px; background: var(--white); border-bottom: 1px solid var(--border); }
-  .hero-inner {
-    max-width: 1160px; margin: 0 auto;
-    padding: 72px 60px 64px;
-    display: grid; grid-template-columns: 1fr 320px;
-    gap: 72px; align-items: center;
-  }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 5px 12px; background: var(--gold-light);
-    border: 1px solid #E2C97E; border-radius: 4px;
-    font-size: 12px; font-weight: 600; color: var(--gold);
-    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px;
-  }
-  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 5vw, 52px);
-    font-weight: 600; line-height: 1.15;
-    color: var(--navy); margin-bottom: 16px;
-  }
-  .hero-tagline { font-size: 16px; color: var(--text-muted); margin-bottom: 32px; max-width: 480px; line-height: 1.75; }
-  .hero-stats { display: flex; gap: 36px; margin-bottom: 36px; flex-wrap: wrap; align-items: center; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--navy); line-height: 1; }
-  .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
-  .stat-divider { width: 1px; height: 40px; background: var(--border); }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 28px; background: var(--navy); color: white;
-    text-decoration: none; font-size: 14px; font-weight: 600;
-    border-radius: 6px; transition: background 0.2s, transform 0.2s;
-  }
-  .btn-primary:hover { background: var(--navy-light); transform: translateY(-1px); }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 28px; border: 1.5px solid var(--border);
-    color: var(--text); text-decoration: none; font-size: 14px;
-    font-weight: 600; border-radius: 6px;
-    transition: border-color 0.2s, transform 0.2s, background 0.2s;
-  }
-  .btn-outline:hover { border-color: var(--navy); color: var(--navy); background: var(--bg2); transform: translateY(-1px); }
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  padding: 0 64px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.5s, border-color 0.5s;
+}
+nav.scrolled {
+  background: rgba(248,244,238,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-brand span {
+  color: var(--gold);
+}
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0; right: 100%;
+  height: 1px;
+  background: var(--gold);
+  transition: right 0.4s cubic-bezier(0.76,0,0.24,1);
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { right: 0; }
+.nav-cta {
+  padding: 9px 24px;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  border-radius: 2px;
+  font-size: 12px !important;
+  letter-spacing: 0.14em !important;
+  transition: background 0.3s, color 0.3s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
 
-  .hero-photo-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden; aspect-ratio: 3/4;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 12px; position: relative;
-  }
-  .hero-photo-card svg { opacity: 0.2; }
-  .hero-photo-card p { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-  .photo-tag {
-    position: absolute; bottom: 16px; left: 16px; right: 16px;
-    background: white; border: 1px solid var(--border);
-    border-radius: 8px; padding: 12px 14px;
-  }
-  .photo-tag-name { font-weight: 600; font-size: 14px; color: var(--navy); }
-  .photo-tag-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 28px;
+  flex-direction: column;
+  gap: 0;
+  z-index: 99;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  text-decoration: none;
+  padding: 14px 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.mobile-menu a:last-child { border-bottom: none; color: var(--gold); }
 
-  /* SECTIONS */
-  .section-wrap { max-width: 1160px; margin: 0 auto; padding: 80px 60px; }
-  .section-label {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--blue-accent); margin-bottom: 12px;
-  }
-  .section-label::before { content: ''; width: 24px; height: 2px; background: var(--blue-accent); border-radius: 2px; }
-  h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 600; color: var(--navy); line-height: 1.2; margin-bottom: 8px; }
-  .section-sub { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.7; margin-bottom: 52px; }
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  background: var(--ink);
+  padding: 140px 72px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+/* Decorative pattern on dark side */
+.hero-left::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(168,131,74,0.15);
+  border-radius: 50%;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(168,131,74,0.1);
+  border-radius: 50%;
+}
+.hero-kicker {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+}
+.hero-kicker::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold-light);
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 6vw, 80px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero-tagline {
+  font-size: 15px;
+  color: rgba(253,250,246,0.55);
+  line-height: 1.8;
+  max-width: 360px;
+  margin-top: 24px;
+  font-weight: 300;
+  animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+}
+.hero-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 32px 0;
+  animation: expandWidth 1s cubic-bezier(0.16,1,0.3,1) 0.65s both;
+}
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 48px; }
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s both;
+}
+.hero-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 11px;
+  color: rgba(253,250,246,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 40px;
+  animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.85s both;
+}
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border: 1px solid rgba(253,250,246,0.2);
+  color: rgba(253,250,246,0.7);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: border-color 0.3s, color 0.3s, transform 0.3s;
+}
+.btn-ghost:hover { border-color: rgba(168,131,74,0.6); color: var(--white); transform: translateY(-2px); }
 
-  /* ABOUT */
-  #about { background: var(--white); border-bottom: 1px solid var(--border); }
-  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: start; }
-  .about-text p { font-size: 15px; color: #374151; line-height: 1.8; margin-bottom: 18px; }
-  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
-  .service-card {
-    padding: 18px 18px 16px; background: var(--bg);
-    border: 1px solid var(--border); border-radius: 8px;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .service-card:hover { border-color: #93C5FD; box-shadow: 0 4px 16px rgba(37,99,235,0.08); transform: translateY(-2px); }
-  .service-icon { display: flex; align-items: center; margin-bottom: 10px; }
-  .service-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-  .service-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.hero-right {
+  background: var(--parchment);
+  position: relative;
+  overflow: hidden;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.hero-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream-deep);
+  flex-direction: column;
+  gap: 16px;
+}
+.hero-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(28,22,16,0.7) 0%, transparent 60%);
+  padding: 40px 40px 36px;
+}
+.hero-overlay-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 4px;
+}
+.hero-overlay-role {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+/* Diagonal line connecting the two halves */
+.hero-accent-line {
+  position: absolute;
+  bottom: 80px; left: -20px;
+  width: 100px; height: 1px;
+  background: var(--gold-light);
+  opacity: 0.4;
+  transform: rotate(-45deg);
+}
 
-  .profile-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.05); }
-  .profile-card-header { background: var(--navy); padding: 24px 28px 20px; }
-  .profile-card-header h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: white; margin-bottom: 4px; }
-  .profile-card-header p { font-size: 13px; color: rgba(255,255,255,0.65); }
-  .profile-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 28px; border-bottom: 1px solid var(--bg2); gap: 16px; }
-  .profile-row:last-child { border-bottom: none; }
-  .pr-label { font-size: 12px; color: var(--text-muted); font-weight: 500; flex-shrink: 0; }
-  .pr-value { font-size: 13px; font-weight: 600; color: var(--text); text-align: right; }
-  .pr-value a { color: var(--blue-accent); text-decoration: none; }
-  .pr-value a:hover { text-decoration: underline; }
+/* ─── QUOTE BAND ─── */
+.quote-band {
+  background: var(--gold);
+  padding: 28px 64px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+  position: relative;
+}
+.quote-band::before {
+  content: '"';
+  position: absolute;
+  left: 40px;
+  top: -20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 120px;
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+.quote-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.3); flex-shrink: 0; }
+.quote-attr { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); white-space: nowrap; }
 
-  /* EXPERIENCE */
-  #experience { background: var(--bg2); border-bottom: 1px solid var(--border); }
-  .exp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 56px; }
-  .exp-stat-card {
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: 10px; padding: 28px 24px 22px;
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .exp-stat-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .exp-stat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 8px; }
-  .exp-stat-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
-  .exp-stat-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+/* ─── SECTIONS BASE ─── */
+.section-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 96px 64px;
+}
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+h2 em { font-style: italic; color: var(--gold); }
+.section-sub {
+  font-size: 15px;
+  color: var(--ink-soft);
+  max-width: 520px;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-top: 12px;
+  margin-bottom: 56px;
+}
 
-  .timeline { position: relative; padding-left: 28px; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: var(--border); border-radius: 2px; }
-  .tl-item { position: relative; padding-bottom: 40px; opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .tl-item.visible { opacity: 1; transform: translateY(0); }
-  .tl-item:last-child { padding-bottom: 0; }
-  .tl-dot { position: absolute; left: -34px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--white); border: 2.5px solid var(--navy); }
-  .tl-dot.active { background: var(--navy); }
-  .tl-year { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-accent); margin-bottom: 6px; background: #DBEAFE; padding: 2px 8px; border-radius: 4px; }
-  .tl-item h4 { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-  .tl-company { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; background: var(--bg2); padding: 3px 10px; border-radius: 4px; border: 1px solid var(--border); }
-  .tl-item p { font-size: 14px; color: #4B5563; line-height: 1.7; }
+/* ─── ABOUT ─── */
+#about { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 15px;
+  color: var(--ink-mid);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.about-text p:last-child { margin-bottom: 0; }
 
-  /* CONTACT */
-  #contact { background: var(--white); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-  .contact-cards { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
-  .contact-card {
-    display: flex; align-items: center; gap: 16px;
-    padding: 16px 20px; background: var(--bg);
-    border: 1px solid var(--border); border-radius: 8px;
-    text-decoration: none; color: inherit;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .contact-card:hover { border-color: #93C5FD; box-shadow: 0 4px 16px rgba(37,99,235,0.08); transform: translateX(4px); }
-  .cc-icon { width: 42px; height: 42px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 17px; }
-  .cc-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
-  .cc-value { font-size: 14px; font-weight: 600; color: var(--text); }
+/* Service list — editorial style */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.service-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+  transition: background 0.2s;
+  position: relative;
+}
+.service-item::before {
+  content: '';
+  position: absolute;
+  left: -24px; right: -24px;
+  top: 0; bottom: 0;
+  background: var(--gold-pale);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+.service-item:hover::before { opacity: 1; }
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+.service-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+.service-desc {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+  text-align: right;
+}
 
-  .contact-form { display: flex; flex-direction: column; gap: 14px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-group { display: flex; flex-direction: column; gap: 5px; }
-  .form-group label { font-size: 12px; font-weight: 600; color: var(--text); }
-  .form-group input, .form-group select, .form-group textarea {
-    padding: 10px 13px; border: 1.5px solid var(--border); border-radius: 6px;
-    font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text);
-    background: var(--white); outline: none; transition: border-color 0.2s, box-shadow 0.2s; resize: none;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue-accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-  .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 34px; }
-  .submit-btn {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 12px 28px; background: var(--navy); color: white;
-    border: none; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
-    border-radius: 6px; cursor: pointer; transition: background 0.2s, transform 0.2s;
-  }
-  .submit-btn:hover { background: var(--navy-light); transform: translateY(-1px); }
-  .submit-btn:disabled { opacity: 0.7; transform: none; cursor: default; }
-  .form-success {
-    display: none; padding: 13px 16px;
-    background: #F0FDF4; border: 1px solid #86EFAC;
-    border-radius: 6px; font-size: 14px; color: #166534;
-    align-items: center; gap: 8px; font-weight: 500;
-  }
+/* Profile card — editorial */
+.profile-aside {
+  position: sticky;
+  top: 96px;
+}
+.profile-card {
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.profile-header {
+  background: var(--ink);
+  padding: 28px 28px 24px;
+  position: relative;
+}
+.profile-header::after {
+  content: 'VD';
+  position: absolute;
+  right: 20px;
+  bottom: -20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  font-weight: 600;
+  color: rgba(168,131,74,0.12);
+  line-height: 1;
+}
+.profile-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.profile-header p {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.profile-rows { background: var(--cream); }
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--border);
+  gap: 20px;
+}
+.profile-row:last-child { border-bottom: none; }
+.pr-label {
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.pr-value {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+.pr-value a { color: var(--gold); text-decoration: none; }
+.pr-value a:hover { text-decoration: underline; }
 
-  /* FOOTER */
-  footer {
-    background: var(--navy); color: rgba(255,255,255,0.65);
-    padding: 28px 60px; display: flex;
-    justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 12px;
-  }
-  .footer-brand { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: white; }
-  .footer-copy { font-size: 13px; }
-  .footer-badge { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-  .badge-pill { padding: 3px 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 100px; font-size: 11px; font-weight: 600; color: white; letter-spacing: 0.04em; }
+/* ─── EXPERIENCE ─── */
+#experience {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+}
+.exp-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 64px;
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.exp-stat {
+  padding: 36px 32px;
+  background: var(--white);
+  transition: background 0.3s;
+  text-align: center;
+}
+.exp-stat + .exp-stat {
+  border-left: 1px solid var(--border);
+}
+.exp-stat:hover { background: var(--gold-pale); }
+.exp-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.exp-num span { font-size: 32px; vertical-align: super; color: var(--gold); }
+.exp-stat-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.exp-stat-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-weight: 300;
+  line-height: 1.6;
+}
 
-  /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+/* Timeline — editorial */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid var(--border-strong);
+  padding-left: 48px;
+  margin-left: 24px;
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 48px;
+  opacity: 0;
+  transform: translateX(-16px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.tl-item.visible { opacity: 1; transform: translateX(0); }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -54px;
+  top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  transition: background 0.3s;
+}
+.tl-item:hover .tl-dot { background: var(--gold); }
+.tl-year {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.tl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.tl-org {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tl-org::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--gold-light);
+}
+.tl-body {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 600px;
+}
 
-  /* CSS ICONS — replaces all emoji */
-  .icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 20px; height: 20px; flex-shrink: 0;
-  }
-  /* Shield — Life Insurance */
-  .icon-shield::before {
-    content: '';
-    display: block; width: 16px; height: 18px;
-    background: var(--navy);
-    clip-path: polygon(50% 0%, 100% 20%, 100% 60%, 50% 100%, 0% 60%, 0% 20%);
-  }
-  .service-card .icon-shield::before { background: var(--blue-accent); }
-  /* Cross — Health Insurance */
-  .icon-cross {
-    position: relative; width: 18px; height: 18px;
-  }
-  .icon-cross::before, .icon-cross::after {
-    content: ''; position: absolute; background: var(--blue-accent); border-radius: 2px;
-  }
-  .icon-cross::before { width: 6px; height: 18px; left: 6px; top: 0; }
-  .icon-cross::after  { width: 18px; height: 6px; left: 0; top: 6px; }
-  /* Coin — Investment */
-  .icon-coin::before {
-    content: ''; display: block;
-    width: 18px; height: 18px; border-radius: 50%;
-    border: 3px solid var(--blue-accent);
-    box-shadow: inset 0 0 0 2px rgba(37,99,235,0.15);
-  }
-  /* Cap — Education/Pension */
-  .icon-cap::before {
-    content: ''; display: block; width: 18px; height: 10px;
-    background: var(--blue-accent);
-    clip-path: polygon(0% 60%, 50% 0%, 100% 60%, 100% 100%, 0% 100%);
-  }
-  /* Mail */
-  .icon-mail::before {
-    content: ''; display: block; width: 18px; height: 13px;
-    border: 2px solid white; border-radius: 2px;
-    background: linear-gradient(135deg, white 45%, transparent 45%) top left / 50% 100% no-repeat,
-                linear-gradient(225deg, white 45%, transparent 45%) top right / 50% 100% no-repeat;
-    background-color: transparent;
-  }
-  /* Better mail with SVG-like shape using box trick */
-  .cc-icon .icon-mail { width: 22px; height: 22px; }
-  .cc-icon .icon-mail::before { display: none; }
-  .cc-icon .icon-mail::after {
-    content: '';
-    display: block;
-    width: 20px; height: 14px;
-    border: 2px solid white;
-    border-radius: 2px;
-    position: relative;
-    background:
-      linear-gradient(to bottom right, white 50%, transparent 50%) 0 0 / 50% 50% no-repeat,
-      linear-gradient(to bottom left, white 50%, transparent 50%) 100% 0 / 50% 50% no-repeat;
-    background-color: transparent;
-  }
-  /* Building — Organization */
-  .icon-building::before {
-    content: ''; display: block; width: 16px; height: 18px;
-    background: white;
-    clip-path: polygon(10% 100%, 10% 20%, 40% 0%, 60% 0%, 90% 20%, 90% 100%);
-  }
-  /* Clock — Hours */
-  .icon-clock::before {
-    content: ''; display: block; width: 18px; height: 18px;
-    border: 2.5px solid white; border-radius: 50%;
-    box-shadow: inset 2px -2px 0 0 white;
-  }
-  /* Column — LIC */
-  .icon-column::before {
-    content: ''; display: block; width: 16px; height: 18px;
-    background: white;
-    clip-path: polygon(0% 100%, 0% 8%, 20% 0%, 80% 0%, 100% 8%, 100% 100%, 80% 100%, 80% 8%, 20% 8%, 20% 100%);
-  }
-  /* Heart — Star Health */
-  .icon-heart::before {
-    content: ''; display: block; width: 16px; height: 14px;
-    background: white;
-    clip-path: path('M 8 14 C 8 14 0 8 0 4 C 0 1.5 2 0 4 0 C 5.5 0 7 1 8 2.5 C 9 1 10.5 0 12 0 C 14 0 16 1.5 16 4 C 16 8 8 14 8 14 Z');
-  }
-  /* Grad cap — Education */
-  .icon-gradcap::before {
-    content: ''; display: block; width: 18px; height: 10px;
-    background: white;
-    clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 85% 50%, 85% 100%, 15% 100%, 15% 50%);
-  }
+/* ─── CONTACT ─── */
+#contact {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-info p {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 36px;
+}
+.contact-items { display: flex; flex-direction: column; gap: 16px; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--cream);
+  transition: border-color 0.3s, transform 0.3s, background 0.3s;
+}
+.contact-item:hover { border-color: var(--gold); transform: translateX(6px); background: var(--gold-pale); }
+.ci-icon {
+  width: 40px; height: 40px;
+  background: var(--ink);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.contact-item:hover .ci-icon { background: var(--gold); }
+.ci-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 2px;
+}
+.ci-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+}
 
-  /* RESPONSIVE */
-  @media (max-width: 960px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .hero-inner { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 36px; }
-    .hero-photo-card { max-height: 260px; }
-    .section-wrap { padding: 56px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .exp-stats { grid-template-columns: 1fr; gap: 14px; }
-    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; text-align: center; padding: 24px; }
-    .hero-stats { gap: 20px; }
-  }
+/* Form */
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 2px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  resize: none;
+  font-weight: 300;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  background: var(--gold-pale);
+}
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A8834A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--ink-soft); opacity: 0.6; font-weight: 300; }
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.submit-btn:hover { background: var(--gold); transform: translateY(-2px); }
+.submit-btn:disabled { opacity: 0.6; transform: none; cursor: default; }
+.form-success {
+  display: none;
+  padding: 14px 18px;
+  background: #F0FAF0;
+  border: 1px solid #9DD99D;
+  border-radius: 2px;
+  font-size: 13px;
+  color: #1B5E20;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+}
+.form-error {
+  display: none;
+  padding: 14px 18px;
+  background: #FEF2F0;
+  border: 1px solid #FECACA;
+  border-radius: 2px;
+  font-size: 13px;
+  color: #991B1B;
+  font-weight: 400;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--ink);
+  padding: 40px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(168,131,74,0.3);
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.footer-brand span { color: var(--gold-light); }
+.footer-copy { font-size: 12px; color: rgba(253,250,246,0.4); letter-spacing: 0.04em; }
+.footer-badges { display: flex; align-items: center; gap: 10px; }
+.badge {
+  padding: 4px 12px;
+  border: 1px solid rgba(168,131,74,0.4);
+  border-radius: 1px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  #hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 120px 28px 60px; }
+  .hero-right { min-height: 380px; }
+  .quote-band { flex-wrap: wrap; padding: 24px 28px; }
+  .quote-divider { display: none; }
+  .section-wrap { padding: 64px 28px; }
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .profile-aside { position: static; }
+  .exp-intro { grid-template-columns: 1fr; }
+  .exp-stat + .exp-stat { border-left: none; border-top: 1px solid var(--border); }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+  .hero-stats { gap: 24px; }
+}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-brand">
-    <div class="nav-brand-icon">V</div>
-    <div>
-      <div class="nav-brand-name">Varsha Dudhat</div>
-      <div class="nav-brand-role">LIC Insurance Advisor</div>
-    </div>
-  </a>
+  <a href="#" class="nav-brand">Varsha <em style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;">Dudhat</em></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -393,98 +889,113 @@
   <a href="#about" onclick="closeMenu()">About</a>
   <a href="#experience" onclick="closeMenu()">Experience</a>
   <a href="#contact" onclick="closeMenu()">Contact</a>
-  <a href="#contact" onclick="closeMenu()" style="color:var(--blue-accent);">Book a Consultation →</a>
+  <a href="#contact" onclick="closeMenu()">Book a Consultation →</a>
 </div>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge">LIC of India · Certified Advisor</div>
-      <h1>Varsha Dudhat</h1>
-      <p class="hero-tagline">Insurance Advisor & Financial Planner with 20+ years of experience helping families secure their future through trusted LIC and Star Health insurance solutions.</p>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num" data-count="20">0+</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div>
-          <div class="stat-num" data-count="500">0+</div>
-          <div class="stat-label">Families Served</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div>
-          <div class="stat-num">2</div>
-          <div class="stat-label">Organizations</div>
-        </div>
+  <div class="hero-left">
+    <div class="hero-kicker">LIC of India &nbsp;·&nbsp; Certified Advisor</div>
+    <h1 class="hero-name">Varsha<br><em>Dudhat</em></h1>
+    <p class="hero-tagline">Insurance Advisor & Financial Planner with over 20 years of experience protecting families through LIC and Star Health insurance solutions.</p>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num" data-count="20">0</div>
+        <div class="hero-stat-label">Years Experience</div>
       </div>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">
-          Get in Touch
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#experience" class="btn-outline">View Experience</a>
+      <div style="width:1px;background:rgba(168,131,74,0.3);height:44px;"></div>
+      <div>
+        <div class="hero-stat-num" data-count="500">0</div>
+        <div class="hero-stat-label">Families Served</div>
+      </div>
+      <div style="width:1px;background:rgba(168,131,74,0.3);height:44px;"></div>
+      <div>
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Organizations</div>
       </div>
     </div>
-    <div class="hero-photo-card">
-    <img src="pic.jpeg" alt="Varsha Dudhat" style="width:100%;height:100%;object-fit:cover;object-position:top;">
-    <div class="photo-tag">
-    <div class="photo-tag-name">Varsha Dudhat</div>
-    <div class="photo-tag-role">Insurance Advisor · LIC of India</div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">
+        Get in Touch
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#experience" class="btn-ghost">View Experience</a>
     </div>
+  </div>
+  <div class="hero-right">
+    <img src="pic.jpeg" alt="Varsha Dudhat" class="hero-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="hero-img-placeholder" style="display:none;">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" opacity="0.2">
+        <circle cx="32" cy="24" r="14" stroke="#1C1610" stroke-width="2"/>
+        <path d="M6 58c0-14.359 11.641-26 26-26s26 11.641 26 26" stroke="#1C1610" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <p style="font-size:12px;color:var(--ink-soft);letter-spacing:0.08em;">Place pic.jpeg here</p>
     </div>
+    <div class="hero-overlay">
+      <div class="hero-overlay-name">Varsha Dudhat</div>
+      <div class="hero-overlay-role">Insurance Advisor · LIC of India</div>
     </div>
   </div>
 </section>
+
+<!-- QUOTE BAND -->
+<div class="quote-band">
+  <p class="quote-text">Your family's security is not a product — it's a promise.</p>
+  <div class="quote-divider"></div>
+  <span class="quote-attr">Two decades of trust</span>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
   <div class="section-wrap">
     <div class="section-label">About</div>
-    <h2>Trusted. Personal. Professional.</h2>
-    <div class="about-grid" style="margin-top:40px;">
-      <div class="about-text reveal">
-        <p>I am Varsha Dudhat, a certified LIC Insurance Advisor with over 20 years of experience across life and health insurance. My career spans dedicated service with LIC of India and 8 years as an advisor with Star Health Insurance, giving me a comprehensive understanding of both coverage types.</p>
-        <p>With a BSc in Physics and Computer Science, I bring an analytical approach to financial planning — helping clients make informed decisions with clarity and confidence. My focus has always been on long-term relationships, not one-time transactions.</p>
-        <p>Whether you're buying your first policy or reviewing an existing portfolio, I offer guidance that is transparent, practical, and tailored to your family's needs.</p>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon"><span class="icon icon-shield"></span></div>
-            <div class="service-title">Life Insurance</div>
-            <div class="service-desc">Term, endowment, whole life & ULIP plans</div>
+    <h2>Trusted. Personal. <em>Professional.</em></h2>
+    <div class="about-grid" style="margin-top:48px;">
+      <div class="reveal">
+        <div class="about-text">
+          <p>I am Varsha Dudhat, a certified LIC Insurance Advisor with over 20 years of experience in life and health insurance. My career spans dedicated service with LIC of India and 8 years as an advisor with Star Health Insurance — giving me a comprehensive understanding of both coverage types and what families truly need.</p>
+          <p>With a BSc in Physics and Computer Science, I bring an analytical approach to financial planning, helping clients make informed decisions with clarity and confidence. My focus has always been on long-term relationships built on transparency — not one-time transactions.</p>
+          <p>Whether you're buying your first policy or reviewing an existing portfolio, I offer guidance that is practical and tailored to your family's unique needs and goals.</p>
+        </div>
+        <div class="services-list" style="margin-top:40px;">
+          <div class="service-item">
+            <span class="service-num">01</span>
+            <span class="service-name">Life Insurance</span>
+            <span class="service-desc">Term, endowment, ULIP plans</span>
           </div>
-          <div class="service-card">
-            <div class="service-icon"><span class="icon icon-cross"></span></div>
-            <div class="service-title">Health Insurance</div>
-            <div class="service-desc">Individual, family & senior health plans</div>
+          <div class="service-item">
+            <span class="service-num">02</span>
+            <span class="service-name">Health Insurance</span>
+            <span class="service-desc">Individual & family plans</span>
           </div>
-          <div class="service-card">
-            <div class="service-icon"><span class="icon icon-coin"></span></div>
-            <div class="service-title">Investment Plans</div>
-            <div class="service-desc">Tax-saving & long-term wealth creation</div>
+          <div class="service-item">
+            <span class="service-num">03</span>
+            <span class="service-name">Investment Plans</span>
+            <span class="service-desc">Tax-saving & wealth creation</span>
           </div>
-          <div class="service-card">
-            <div class="service-icon"><span class="icon icon-cap"></span></div>
-            <div class="service-title">Child & Pension Plans</div>
-            <div class="service-desc">Education funds & retirement coverage</div>
+          <div class="service-item">
+            <span class="service-num">04</span>
+            <span class="service-name">Child &amp; Pension Plans</span>
+            <span class="service-desc">Education funds & retirement</span>
           </div>
         </div>
       </div>
-      <div class="reveal">
+      <div class="profile-aside reveal reveal-delay-2">
         <div class="profile-card">
-          <div class="profile-card-header">
+          <div class="profile-header">
             <h3>Varsha Dudhat</h3>
             <p>Insurance Advisor · LIC of India</p>
           </div>
           <div class="profile-rows">
             <div class="profile-row"><span class="pr-label">Education</span><span class="pr-value">BSc Physics &amp; Computer Science</span></div>
-            <div class="profile-row"><span class="pr-label">Total Experience</span><span class="pr-value">20+ Years</span></div>
+            <div class="profile-row"><span class="pr-label">Experience</span><span class="pr-value">20+ Years</span></div>
             <div class="profile-row"><span class="pr-label">LIC of India</span><span class="pr-value">Certified Advisor</span></div>
             <div class="profile-row"><span class="pr-label">Star Health</span><span class="pr-value">8 Years</span></div>
             <div class="profile-row"><span class="pr-label">Specialization</span><span class="pr-value">Life &amp; Health Insurance</span></div>
             <div class="profile-row"><span class="pr-label">Email</span><span class="pr-value"><a href="mailto:varshamdudhat79@gmail.com">varshamdudhat79@gmail.com</a></span></div>
-            <div class="profile-row"><span class="pr-label">Availability</span><span class="pr-value">Mon – Sat, 10AM – 6PM</span></div>
+            <div class="profile-row"><span class="pr-label">Available</span><span class="pr-value">Mon–Sat, 10AM–6PM</span></div>
           </div>
         </div>
       </div>
@@ -495,49 +1006,49 @@
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-wrap">
-    <div class="section-label">Experience</div>
-    <h2>20 Years of Insurance Expertise</h2>
-    <p class="section-sub">A career built on trust, knowledge, and genuine care for every client's financial wellbeing.</p>
+    <div class="section-label reveal">Experience</div>
+    <h2 class="reveal reveal-delay-1">20 Years of <em>Insurance Expertise</em></h2>
+    <p class="section-sub reveal reveal-delay-2">A career built on trust, knowledge, and genuine care for every client's financial wellbeing.</p>
 
-    <div class="exp-stats reveal">
-      <div class="exp-stat-card">
-        <div class="exp-stat-num" data-count2="20">20+</div>
+    <div class="exp-intro reveal">
+      <div class="exp-stat">
+        <div class="exp-num" data-count2="20">20<span>+</span></div>
         <div class="exp-stat-title">Years in Insurance</div>
-        <div class="exp-stat-desc">Two decades of advising individuals and families across life and health insurance products.</div>
+        <div class="exp-stat-desc">Two decades advising individuals and families across life and health insurance.</div>
       </div>
-      <div class="exp-stat-card">
-        <div class="exp-stat-num">8</div>
+      <div class="exp-stat">
+        <div class="exp-num">8</div>
         <div class="exp-stat-title">Years at Star Health</div>
-        <div class="exp-stat-desc">Deep expertise in health insurance, cashless claims, and client health planning.</div>
+        <div class="exp-stat-desc">Deep expertise in health plans, cashless claims, and client health planning.</div>
       </div>
-      <div class="exp-stat-card">
-        <div class="exp-stat-num" data-count2="500">500+</div>
+      <div class="exp-stat">
+        <div class="exp-num" data-count2="500">500<span>+</span></div>
         <div class="exp-stat-title">Clients Served</div>
-        <div class="exp-stat-desc">Long-term relationships with hundreds of families, with full support throughout their policy journey.</div>
+        <div class="exp-stat-desc">Long-term relationships with hundreds of families with full support throughout.</div>
       </div>
     </div>
 
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-dot active"></div>
+        <div class="tl-dot"></div>
         <div class="tl-year">2004 – Present</div>
-        <h4>Certified Insurance Advisor</h4>
-        <div class="tl-company"><span class="icon icon-column" style="width:14px;height:14px;"></span> LIC of India</div>
-        <p>End-to-end insurance advisory services — from selecting the right plan to claim settlement support. Specializing in life, endowment, ULIP, child, and pension plans for individuals and families across all income groups.</p>
+        <div class="tl-title">Certified Insurance Advisor</div>
+        <div class="tl-org">LIC of India</div>
+        <p class="tl-body">End-to-end insurance advisory services — from selecting the right plan to claim settlement support. Specializing in life, endowment, ULIP, child, and pension plans for individuals and families across all income groups.</p>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-year">8 Years</div>
-        <h4>Insurance Advisor — Health Division</h4>
-        <div class="tl-company"><span class="icon icon-heart" style="width:14px;height:14px;"></span> Star Health Insurance</div>
-        <p>Advised clients on individual and family health plans, critical illness riders, and top-up covers. Assisted policyholders through cashless hospitalization processes and claim documentation for stress-free experiences.</p>
+        <div class="tl-title">Insurance Advisor — Health Division</div>
+        <div class="tl-org">Star Health Insurance</div>
+        <p class="tl-body">Advised clients on individual and family health plans, critical illness riders, and top-up covers. Assisted policyholders through cashless hospitalization processes and claim documentation for stress-free experiences.</p>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-year">Academic Background</div>
-        <h4>BSc in Physics & Computer Science</h4>
-        <div class="tl-company"><span class="icon icon-gradcap" style="width:14px;height:14px;"></span> University Graduate</div>
-        <p>A strong analytical foundation that supports rigorous financial planning, risk assessment, and precise insurance recommendations for every client.</p>
+        <div class="tl-title">BSc in Physics &amp; Computer Science</div>
+        <div class="tl-org">University Graduate</div>
+        <p class="tl-body">A strong analytical foundation that supports rigorous financial planning, risk assessment, and precise insurance recommendations for every client's unique situation.</p>
       </div>
     </div>
   </div>
@@ -546,43 +1057,45 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-wrap">
-    <div class="section-label">Contact</div>
-    <h2>Let's Talk About Your Future</h2>
-    <div class="contact-grid" style="margin-top:40px;">
+    <div class="section-label reveal">Contact</div>
+    <h2 class="reveal reveal-delay-1">Let's Talk About <em>Your Future</em></h2>
+    <div class="contact-grid" style="margin-top:48px;">
       <div class="reveal">
-        <p style="font-size:15px;color:var(--text-muted);line-height:1.75;margin-bottom:0;">Whether you need a new policy, want to review existing coverage, or have questions about a claim — I'm here to help clearly and patiently.</p>
-        <div class="contact-cards">
-          <a href="mailto:varshamdudhat79@gmail.com" class="contact-card">
-            <div class="cc-icon">
-              <svg width="20" height="16" viewBox="0 0 20 16" fill="none"><rect x="1" y="1" width="18" height="14" rx="2" stroke="white" stroke-width="1.6"/><path d="M1 4l9 6 9-6" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div class="contact-info">
+          <p>Whether you need a new policy, want to review existing coverage, or have questions about a claim — I am here to help you with clarity and patience.</p>
+        </div>
+        <div class="contact-items">
+          <a href="mailto:varshamdudhat79@gmail.com" class="contact-item">
+            <div class="ci-icon">
+              <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect x="1" y="1" width="16" height="12" rx="2" stroke="white" stroke-width="1.5"/><path d="M1 3.5l8 5 8-5" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
             </div>
             <div>
-              <div class="cc-label">Email</div>
-              <div class="cc-value">varshamdudhat79@gmail.com</div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">varshamdudhat79@gmail.com</div>
             </div>
           </a>
-          <div class="contact-card" style="pointer-events:none;">
-            <div class="cc-icon">
-              <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><rect x="1" y="3" width="16" height="16" rx="1" stroke="white" stroke-width="1.6"/><path d="M1 8h16M6 1v4M12 1v4" stroke="white" stroke-width="1.6" stroke-linecap="round"/><rect x="4" y="11" width="3" height="3" rx="0.5" fill="white"/><rect x="7.5" y="11" width="3" height="3" rx="0.5" fill="white"/><rect x="11" y="11" width="3" height="3" rx="0.5" fill="white"/></svg>
+          <div class="contact-item" style="pointer-events:none;">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="white" stroke-width="1.5"/><path d="M9 5v4l2.5 2.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div>
-              <div class="cc-label">Organization</div>
-              <div class="cc-value">LIC of India · Star Health Insurance</div>
+              <div class="ci-label">Working Hours</div>
+              <div class="ci-value">Monday – Saturday, 10:00 AM – 6:00 PM</div>
             </div>
           </div>
-          <div class="contact-card" style="pointer-events:none;">
-            <div class="cc-icon">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.5" stroke="white" stroke-width="1.6"/><path d="M10 5.5V10l3 3" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="contact-item" style="pointer-events:none;">
+            <div class="ci-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="3" width="16" height="14" rx="1.5" stroke="white" stroke-width="1.5"/><path d="M1 7h16M6 1v4M12 1v4" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
             </div>
             <div>
-              <div class="cc-label">Working Hours</div>
-              <div class="cc-value">Monday – Saturday, 10:00 AM – 6:00 PM</div>
+              <div class="ci-label">Organizations</div>
+              <div class="ci-value">LIC of India · Star Health Insurance</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="reveal">
-        <p style="font-size:12px;font-weight:700;color:var(--text);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;">Send a Message</p>
+      <div class="reveal reveal-delay-2">
+        <p style="font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-mid);margin-bottom:20px;">Send a Message</p>
         <form class="contact-form" id="contactForm" action="https://formspree.io/f/varshamdudhat79@gmail.com" method="POST">
           <div class="form-row">
             <div class="form-group">
@@ -616,19 +1129,18 @@
             <label for="fmessage">Message (Optional)</label>
             <textarea id="fmessage" name="message" rows="4" placeholder="Any questions or details you'd like to share..."></textarea>
           </div>
-          <!-- Honeypot spam protection -->
           <input type="text" name="_gotcha" style="display:none">
           <input type="hidden" name="_subject" value="New inquiry from varshamdudhat.com">
           <button type="submit" class="submit-btn" id="submitBtn">
             <span>Send Message</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="form-success" id="formSuccess">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#166534" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#166534" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Thank you! Varsha will get back to you within 24 hours.
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#1B5E20" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#1B5E20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Thank you — Varsha will reply within 24 hours.
           </div>
-          <div class="form-error" id="formError" style="display:none;padding:13px 16px;background:#FEF2F2;border:1px solid #FECACA;border-radius:6px;font-size:14px;color:#991B1B;font-weight:500;">
-            Something went wrong. Please email directly at varshamdudhat79@gmail.com
+          <div class="form-error" id="formError">
+            Something went wrong. Please email directly: varshamdudhat79@gmail.com
           </div>
         </form>
       </div>
@@ -636,102 +1148,108 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">Varsha Dudhat</div>
+  <div class="footer-brand">Varsha <span>Dudhat</span></div>
   <div class="footer-copy">© 2025 Varsha Dudhat · All rights reserved</div>
-  <div class="footer-badge">
-    <span class="badge-pill">LIC</span>
-    <span class="badge-pill">Star Health</span>
-    <span>Authorized Advisor</span>
+  <div class="footer-badges">
+    <span class="badge">LIC</span>
+    <span class="badge">Star Health</span>
+    <span style="font-size:11px;color:rgba(253,250,246,0.4);letter-spacing:0.08em;">Authorized Advisor</span>
   </div>
 </footer>
 
 <script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
-  });
-  document.getElementById('hamburger').addEventListener('click', function() {
-    this.classList.toggle('open');
-    document.getElementById('mobileMenu').classList.toggle('open');
-  });
-  function closeMenu() {
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mobileMenu').classList.remove('open');
-  }
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
 
-  // Reveal
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+// Hamburger
+document.getElementById('hamburger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
 
-  // Timeline
-  const tlObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.tl-item').forEach((el, i) => setTimeout(() => el.classList.add('visible'), i * 180));
-        tlObs.disconnect();
-      }
-    });
-  }, { threshold: 0.1 });
-  const tl = document.querySelector('.timeline');
-  if (tl) tlObs.observe(tl);
+// Reveal on scroll
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-  // Counters
-  function animateCount(el, target, suffix) {
-    let start = 0, step = target / 50;
-    const t = setInterval(() => {
-      start += step;
-      if (start >= target) { start = target; clearInterval(t); }
-      el.textContent = Math.floor(start) + suffix;
-    }, 22);
-  }
-  const cntObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('[data-count]').forEach(el => {
-          animateCount(el, parseInt(el.dataset.count), '+');
-        });
-        cntObs.disconnect();
-      }
-    });
-  }, { threshold: 0.5 });
-  const hs = document.querySelector('.hero-stats');
-  if (hs) cntObs.observe(hs);
-
-  // Form — Formspree
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const successEl = document.getElementById('formSuccess');
-    const errorEl = document.getElementById('formError');
-    btn.innerHTML = 'Sending…'; btn.disabled = true;
-    successEl.style.display = 'none';
-    errorEl.style.display = 'none';
-    try {
-      const res = await fetch(this.action, {
-        method: 'POST',
-        body: new FormData(this),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> Sent!';
-        successEl.style.display = 'flex';
-        this.reset();
-        setTimeout(() => {
-          btn.innerHTML = '<span>Send Message</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-          btn.disabled = false;
-          successEl.style.display = 'none';
-        }, 5000);
-      } else {
-        throw new Error('Server error');
-      }
-    } catch {
-      errorEl.style.display = 'block';
-      btn.innerHTML = '<span>Send Message</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-      btn.disabled = false;
+// Timeline stagger
+const tlObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.tl-item').forEach((el, i) =>
+        setTimeout(() => el.classList.add('visible'), i * 200)
+      );
+      tlObs.disconnect();
     }
   });
+}, { threshold: 0.1 });
+const tl = document.querySelector('.timeline');
+if (tl) tlObs.observe(tl);
+
+// Counter animation
+function animateCount(el, target, suffix) {
+  let start = 0;
+  const step = target / 60;
+  const t = setInterval(() => {
+    start += step;
+    if (start >= target) { start = target; clearInterval(t); }
+    el.textContent = Math.floor(start) + suffix;
+  }, 18);
+}
+const heroObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('[data-count]').forEach(el =>
+        animateCount(el, parseInt(el.dataset.count), '+')
+      );
+      heroObs.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+const hs = document.querySelector('.hero-stats');
+if (hs) heroObs.observe(hs);
+
+// Form submission
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const successEl = document.getElementById('formSuccess');
+  const errorEl = document.getElementById('formError');
+  btn.querySelector('span').textContent = 'Sending…';
+  btn.disabled = true;
+  successEl.style.display = 'none';
+  errorEl.style.display = 'none';
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      btn.querySelector('span').textContent = 'Sent!';
+      successEl.style.display = 'flex';
+      this.reset();
+      setTimeout(() => {
+        btn.querySelector('span').textContent = 'Send Message';
+        btn.disabled = false;
+        successEl.style.display = 'none';
+      }, 5000);
+    } else throw new Error();
+  } catch {
+    errorEl.style.display = 'block';
+    btn.querySelector('span').textContent = 'Send Message';
+    btn.disabled = false;
+  }
+});
 </script>
 </body>
 </html>
